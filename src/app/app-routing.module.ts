@@ -13,7 +13,7 @@ export const routes:Routes = [
   {
     path: 'booking/:roomid',
     loadChildren: () => import('./booking/booking.module').then((m)=>m.BookingModule),
-    // canActivate: [LoginGuard]
+    canActivate: [LoginGuard]
   },
   { path: 'comment', loadChildren: () => import('./comment/comment.module').then(m => m.CommentModule) },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

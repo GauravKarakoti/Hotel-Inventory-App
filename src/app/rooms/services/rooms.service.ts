@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { RoomList } from '../rooms';
 import { HttpClient, HttpRequest } from '@angular/common/http';
-import { shareReplay } from 'rxjs';
+import { catchError, of, shareReplay } from 'rxjs';
 import { APP_SERVICE_CONFIG } from '../../AppConfig/appconfig.service';
 import { AppConfig } from '../../AppConfig/appconfig.interface';
 
@@ -18,12 +18,16 @@ export class RoomsService {
     this.getRooms$ = this.http.get<RoomList[]>('/api/rooms',{
       // headers:this.headers
     }).pipe(
-      shareReplay(1)
+      shareReplay(1),
+      catchError(error => {
+        console.error('API Error:', error);
+        return of([]);
+      })
     )
   }
   getRooms()
   {
-    return this.http.get<RoomList[]>('/api/room');
+    return this.http.get<RoomList[]>('/api/rooms');
   }
   addRoom(room: RoomList) {
     return this.http.post<RoomList[]>('/api/rooms',room,{

@@ -2,7 +2,9 @@ import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } f
 import { BookingComponent } from '../booking.component';
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Injectable } from '@angular/core';
 
+@Injectable({ providedIn: 'root' })
 export class BookingGuard implements CanDeactivate<BookingComponent> {
   constructor(private _snackbar:MatSnackBar) {}
   canDeactivate(component: BookingComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState: RouterStateSnapshot): 

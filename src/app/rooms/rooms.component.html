@@ -23,7 +23,15 @@
     {{getError$ | async}}
     Number of Rooms : {{roomsCount$ | async}}
 </h1> -->
-{{priceFilter | json}}
+{{priceFilter.value | json}}
+<div>
+    <input 
+        type="number" 
+        class="form-control" 
+        placeholder="Price" 
+        [formControl]="priceFilter" 
+    />
+</div>
 <div>
     <input type="number" class="form-control" placeholder="Price" [formControl]="priceFilter" />
 </div>

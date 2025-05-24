@@ -51,12 +51,12 @@ export class RoomsComponent implements DoCheck,AfterViewInit ,AfterViewChecked{
   constructor(@SkipSelf() private roomsService: RoomsService, private confiSerice: ConfigService, private sharedDataService: ShareddataService) { 
     this.rooms$=this.roomsService.getRooms$.pipe(
       catchError((err)=>{
-        // console.log(err);
+        console.log(err);
         this.error$.next(err.message);
         return of([]);
       })
     );
-    this.priceFilter=new FormControl(0);
+    this.priceFilter=new FormControl<number>(0);
     console.log(this.priceFilter)
     this.roomsCount$=this.roomsService.getRooms$.pipe(
       map((rooms)=>rooms.length)

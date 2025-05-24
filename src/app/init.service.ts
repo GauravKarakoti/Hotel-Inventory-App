@@ -20,13 +20,17 @@ export class InitService {
           console.log('Configuration loaded successfully');
           this.config = config;
         }),
-        catchError(error => {
-          console.error('Error loading config:', error);
-          this.config = { apiEndpoint: 'http://localhost:3000' };
-          return of(this.config);
-        })
+          catchError(error => {
+            console.error('Error loading config:', error);
+            this.config = { 
+              apiEndpoint: 'http://localhost:4200',
+              apiVersion: 'v1',
+              kind: 'Pod'
+            };
+            return of(this.config);
+          })
       );
     }
-    return of({ apiEndpoint: 'http://localhost:3000' });
+    return of({ apiEndpoint: 'http://localhost:4200' });
   }
 }
